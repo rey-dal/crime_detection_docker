@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: nci_db
+    image: mysql
+    restart: no
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: crime_detection
+    ports:
+      - "3306:3306"
+  adminer:
+    image: adminer
+    restart: no
+    ports:
+      - 8080:8080
+
+#Docker is useful for creating isolated, reproducible environments to run applications consistently across different systems.
+#This setup creates a MySQL database with persistent storage and provides a web-based interface (Adminer) to manage the database.
+
+
+#http://localhost:8080/
+#Hostname: mysql (the service name defined in the Docker Compose file)
+#Username: root
+#Password: root
+#Database: crime_detection
